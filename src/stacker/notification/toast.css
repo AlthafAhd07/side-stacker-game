@@ -1,0 +1,85 @@
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  position: fixed;
+  top: 30px;
+  right: 5%;
+  z-index: 10000000000000000;
+
+  width: fit-content;
+  max-width: 100%;
+  height: 80px;
+  padding: 30px;
+
+  color: white;
+  letter-spacing: 1.1px;
+
+  border-radius: 5px;
+  animation: inTostAnim 600ms ease-in-out;
+}
+@keyframes inTostAnim {
+  0% {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+  90% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.toast__crossIcon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  width: 10px;
+  height: 10px;
+
+  fill: black;
+  stroke: black;
+
+  cursor: pointer;
+}
+
+.toast div {
+  display: flex;
+  gap: 20px;
+
+  margin-top: 10px;
+}
+
+.toast div button {
+  padding-inline: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+}
+
+.toast > p {
+  margin-inline: 35px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+[data-name="false"] {
+  animation: RemoveTostAnim 1s ease-in-out;
+}
+@keyframes RemoveTostAnim {
+  0% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  10% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+}
