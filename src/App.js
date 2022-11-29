@@ -1,15 +1,25 @@
-import { useContext, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 
 import Stacker from "./stacker/index";
-import Toast from "./stacker/notification/Toast";
 
 import socket from "./socket";
 import StackerProvider from "./context/stacker.context";
+import Welcome from "./stacker/welcome";
 
 function App() {
   let user = sessionStorage.getItem("username");
+  const [showWelcome, setShowWelcome] = useState(false);
+
+  const visited = localStorage.getItem("visited");
+
+  useEffect(() => {
+    if (!visited) {
+      localStorage.setItem("visited", true);
+      setShowWelcome(true);
+    }
+  }, []);
 
   if (!!!user) {
     user = prompt("Please enter your name");
@@ -30,9 +40,13 @@ function App() {
 
   return (
     <div className="App">
-      <StackerProvider>
-        <Stacker />
-      </StackerProvider>
+      {showWelcome && <Welcome setShowWelcome={setShowWelcome} />}
+
+      {!showWelcome && (
+        <StackerProvider>
+          <Stacker />
+        </StackerProvider>
+      )}
     </div>
   );
 }

@@ -4,8 +4,8 @@ import "./stacker.css";
 
 import { INITIAL_STATE } from "./initalState";
 
-import SingleItem from "./SingleItem";
-import StackerTop from "./StackerTop";
+import SingleItem from "./singleItem";
+import StackerTop from "./stackerTop";
 import Toast from "./notification/Toast";
 import ShowTurn from "./notification/ShowTurn";
 
@@ -15,7 +15,7 @@ import { StackerContext } from "../context/stacker.context";
 import { useDelayUnmount } from "delay-unmount";
 import useAvoidFirstRender from "../hooks/useAvoidFirstRender";
 
-import { ReactComponent as OnlineIcon } from "../images/leadership-icon.svg";
+import OnlineUsers from "./onlineUsers";
 
 const Stacker = () => {
   const username = sessionStorage.getItem("username");
@@ -23,7 +23,6 @@ const Stacker = () => {
   const {
     items,
     setItems,
-    onlineUsers,
     setOnlineUsers,
     usedBlanks,
     setUsedBlanks,
@@ -39,8 +38,8 @@ const Stacker = () => {
   } = useContext(StackerContext);
 
   const [notifyTurn, setNotifyTurn] = useState(true);
-  const [showOnlineUsers, setShowOnlineUsers] = useState(false);
 
+  // custom Hooks
   const firstRender = useAvoidFirstRender();
   const showNotification = useDelayUnmount(notification?.visible, 900);
   const showTurn = useDelayUnmount(notifyTurn, 270);
@@ -49,6 +48,7 @@ const Stacker = () => {
     setCurrentTurn(username);
   }, [username]);
 
+  // handle game Draw
   useEffect(() => {
     if (usedBlanks === 49 && win === null) {
       setNotification(() => {
@@ -62,6 +62,7 @@ const Stacker = () => {
     }
   }, [items]);
 
+  // handle socket requests and responcess
   useEffect(() => {
     socket.on("onlineusers", (data) => {
       if (data.length > 0) {
@@ -154,6 +155,7 @@ const Stacker = () => {
     });
   }, [socket]);
 
+  // sending the turn
   useEffect(() => {
     if (firstRender) {
       return;
@@ -182,20 +184,7 @@ const Stacker = () => {
     };
   }, [currentTurn, currentGame.opponent, win]);
 
-  function requestGame(data) {
-    const opponent = data.username;
-
-    const { inGame } = onlineUsers.find((i) => i.username === opponent);
-
-    if (inGame) return;
-
-    if (!username) {
-      let user = prompt("Please enter your name");
-      sessionStorage.setItem("username", user);
-      alert("please try again");
-    }
-    socket.emit("requestGame", { from: username, to: opponent });
-  }
+  // handle win or lose
   useEffect(() => {
     if (firstRender) return;
 
@@ -218,6 +207,7 @@ const Stacker = () => {
     }
   }, [win]);
 
+  // showing the current turn to the user
   useEffect(() => {
     let notificationTimer;
 
@@ -256,25 +246,7 @@ const Stacker = () => {
           );
         })}
       </main>
-      <div
-        className="showOnlineUsers"
-        onClick={() => setShowOnlineUsers((old) => !old)}
-      >
-        <OnlineIcon className="showOnlineIcon" />
-      </div>
-      <div className="onlineUsers" data-show={showOnlineUsers}>
-        <h2>Online Users</h2>
-        <ul>
-          {onlineUsers.length < 1 && "No Online Users"}
-          {onlineUsers?.map((i) => {
-            return (
-              <li key={i.username} onClick={() => requestGame(i)}>
-                {i.username} - {i.inGame ? "On Another Game" : "Play Now"}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <OnlineUsers />
       {showNotification && <Toast setNotifyTurn={setNotifyTurn} />}
     </div>
   );

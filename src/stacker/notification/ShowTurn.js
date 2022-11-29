@@ -1,7 +1,10 @@
 import React from "react";
 
+import "./showTurn.css";
+
 const ShowTurn = ({ turn, notifyTurn }) => {
   const username = sessionStorage.getItem("username");
+
   return (
     <div
       className="stacker__turn"

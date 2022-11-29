@@ -18,9 +18,13 @@ const Toast = ({ setNotifyTurn }) => {
 
     currentGame,
     setCurrentGame,
+
     setItems,
+
     setCurrentTurn,
+
     setWin,
+
     setTimer,
     setUsedBlanks,
   } = useContext(StackerContext);
@@ -32,6 +36,7 @@ const Toast = ({ setNotifyTurn }) => {
       from: username,
       to: toast.from,
     });
+
     setAlert((old) => ({ ...old, visible: false }));
     setItems(INITIAL_STATE);
     setCurrentGame({

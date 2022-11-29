@@ -1,0 +1,44 @@
+.stacker__turn {
+  position: absolute;
+  top: 225px;
+
+  padding: 5px;
+  padding-inline: 10px;
+  border-radius: 8px;
+  background-color: white;
+
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.stacker__turn[data-anim="true"] {
+  animation: inAnimation 300ms ease-in;
+}
+@keyframes inAnimation {
+  0% {
+    scale: 0;
+    opacity: 0;
+  }
+  100% {
+    scale: 100%;
+    opacity: 100%;
+  }
+}
+
+.stacker__turn[data-anim="false"] {
+  animation: outAnimation 300ms ease-in;
+}
+
+@keyframes outAnimation {
+  0% {
+    scale: 100%;
+    opacity: 100%;
+  }
+  100% {
+    scale: 0;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,142 @@
+.stackerItem__wrapper {
+  position: relative;
+}
+
+.stacker__item {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #cccccc;
+
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+
+  outline-width: 0;
+
+  caret-color: transparent;
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 15px;
+  transition: all 300ms ease-in-out;
+}
+
+@media only screen and (max-width: 450px) {
+  .stacker__item {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.user {
+  border: 1px solid rgb(73, 81, 224);
+
+  box-shadow: rgb(73 81 224 / 50%) 0px 0px 7px;
+}
+.opponent {
+  border: 1px solid rgb(232, 77, 77);
+
+  box-shadow: rgb(232 77 77 / 50%) 0px 0px 7px;
+}
+#userWon {
+  border: 1px solid #2eff2e;
+  background-color: #2eff2e;
+
+  box-shadow: rgba(111, 255, 111, 1) 0px 0px 14px;
+}
+#OpponentWon {
+  border: 1px solid rgb(232, 77, 77);
+  background-color: rgb(232, 77, 77);
+
+  box-shadow: rgb(232 77 77 / 50%) 0px 0px 7px;
+}
+
+.stacker__item:not(:disabled):hover {
+  border: 1px solid rgb(145, 227, 145);
+
+  box-shadow: rgb(145 227 145 / 50%) 0px 0px 14px;
+}
+
+.stacker__item:disabled {
+  background-color: white;
+
+  color: black;
+}
+.stacker__item:focus {
+  border: 1px solid rgb(145, 227, 145);
+
+  box-shadow: rgb(145 227 145 / 50%) 0px 0px 14px;
+}
+
+.stacker__select {
+  opacity: 0;
+  visibility: hidden;
+
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  width: 120%;
+  height: 30px;
+  background-color: white;
+
+  border-radius: 10px;
+
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  overflow: hidden;
+
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  transition: all 500ms ease-in-out;
+}
+
+.stacker__item:not(:disabled):hover + .stacker__select {
+  opacity: 1;
+  top: -10px;
+  visibility: visible;
+}
+
+.stacker__select:hover {
+  opacity: 1;
+  top: -10px;
+  visibility: visible;
+}
+
+@media only screen and (max-width: 450px) {
+  .stacker__select {
+    width: 160%;
+  }
+}
+
+.stackerTop__wrapper:has(.stacker__select:hover) > .stacker__item {
+  border: 1px solid rgb(145, 227, 145);
+
+  box-shadow: rgb(145 227 145 / 50%) 0px 0px 14px;
+}
+
+.stacker__select div {
+  position: relative;
+  width: 50%;
+  display: grid;
+  place-items: center;
+
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+.stacker__select div:hover {
+  background-color: #2eff2e;
+}
+.stacker__select div:first-child::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+
+  width: 1px;
+  background-color: black;
+  height: 75%;
+}

@@ -1,7 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { StackerContext } from "../context/stacker.context";
-import socket from "../socket";
-import checkWin from "./checkWin";
+
+import "./singleItem.css";
+
+import { StackerContext } from "../../context/stacker.context";
+import socket from "../../socket";
+import checkWin from "../checkWin";
 
 const SingleItem = ({ data, position: { row, item }, setNotifyTurn }) => {
   const username = sessionStorage.getItem("username") || "";
@@ -22,22 +25,23 @@ const SingleItem = ({ data, position: { row, item }, setNotifyTurn }) => {
     setTimer,
   } = useContext(StackerContext);
 
+  // check whose pience is this
   let itemOwner = "";
-
   if (data.owner === username) {
     itemOwner = "user";
   } else if (data.owner === opponent) {
     itemOwner = "opponent";
   }
 
+  // here handling 2 types of input - throw keyboard and click
   function handleinput({ target, customInputValue }) {
     let value;
-
     if (customInputValue) {
       value = customInputValue.toUpperCase();
     } else {
       value = target?.value.toUpperCase();
     }
+
     if (currentTurn !== username) return;
     if (data.value) return;
 
@@ -66,14 +70,15 @@ const SingleItem = ({ data, position: { row, item }, setNotifyTurn }) => {
     }
   }
 
+  // if values changes, check their is a chance to the user to win or lose the game
   useEffect(() => {
     if (data.value) {
       checkWin({ row, item, items, setItems, username, setWin });
     }
   }, [data.value]);
 
+  // if a user win or lose , check the current piece is related to it, and display it in different colors
   let wonPiece;
-
   if (data?.wonPiece === "user") {
     wonPiece = "userWon";
   } else if (data.wonPiece === "opponent") {
@@ -92,7 +97,7 @@ const SingleItem = ({ data, position: { row, item }, setNotifyTurn }) => {
   }
 
   return (
-    <div className="stackerTop__wrapper">
+    <div className="stackerItem__wrapper">
       <input
         value={data.value || ""}
         className={`stacker__item ${itemOwner}`}

@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
-////chatapp-backend-althaf.herokuapp.com
+
 //althaf-game.herokuapp.com
+// localhost:3001
 const URL = "ws://althaf-game.herokuapp.com";
 
 const socket = io(URL, {

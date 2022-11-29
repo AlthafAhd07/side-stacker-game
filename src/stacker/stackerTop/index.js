@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
-import { StackerContext } from "../context/stacker.context";
-import socket from "../socket";
-import { INITIAL_STATE } from "./initalState";
+
+import "./stackerTop.css";
+
+import { StackerContext } from "../../context/stacker.context";
+import socket from "../../socket";
+import { INITIAL_STATE } from "../initalState";
 
 const StackerTop = () => {
   const username = sessionStorage.getItem("username");

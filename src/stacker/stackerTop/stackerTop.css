@@ -1,0 +1,129 @@
+.stakcer__top {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  position: relative;
+
+  width: 405px;
+
+  min-height: 270px;
+}
+
+@media only screen and (max-width: 450px) {
+  .stakcer__top {
+    width: 335px;
+  }
+}
+
+.stakcer__top h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stacker__showUser {
+  margin-block: 20px;
+
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.top__username {
+  padding: 5px;
+  padding-inline: 10px;
+  background-color: #2eff2e;
+
+  border-radius: 5px;
+}
+.stacker__instructions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 8px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+  border: 1px solid #cccccc;
+
+  font-weight: 500px;
+}
+.stacker__instructions div {
+  text-indent: 15px;
+}
+.stacker__instructions p {
+  position: relative;
+}
+.stacker__instructions p::after {
+  content: "";
+
+  position: absolute;
+  top: 8px;
+  right: -15px;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+}
+.stacker__instructions p:nth-child(2):after {
+  background-color: rgb(50, 59, 235);
+}
+.stacker__instructions p:last-child:after {
+  background-color: rgb(249, 56, 56);
+}
+.stakcer__top button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  width: 120px;
+  height: 35px;
+  border: 1px solid #eccecc;
+  padding-inline: 10px;
+
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 500ms ease-in-out;
+}
+
+.stacker__timer {
+  display: grid;
+  place-items: center;
+
+  min-width: 50px;
+  min-height: 50px;
+  margin-block: 5px;
+
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-radius: 50%;
+
+  color: rgb(24, 27, 27);
+}
+
+.stacker__timer[data-turn="false"] {
+  background-color: #ff200fcf;
+}
+.stacker__timer[data-turn="true"] {
+  background-color: #00ff11c4;
+}
+
+.unusedCount {
+  display: grid;
+  place-items: center;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  height: 35px;
+  padding-inline: 10px;
+  background-color: aqua;
+
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+
+  border-radius: 5px;
+}

@@ -23,21 +23,28 @@ function StackerProvider({ children }) {
     msg: "",
     type: "",
   });
+
   return (
     <StackerContext.Provider
       value={{
         items,
         setItems,
+
         onlineUsers,
         setOnlineUsers,
+
         usedBlanks,
         setUsedBlanks,
+
         currentGame,
         setCurrentGame,
+
         currentTurn,
         setCurrentTurn,
+
         timer,
         setTimer,
+
         win,
         setWin,
 
