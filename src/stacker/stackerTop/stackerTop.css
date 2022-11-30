@@ -26,6 +26,14 @@
   .stakcer__top {
     width: 335px;
   }
+  .howToPlay {
+    right: -4px;
+    top: 9px;
+  }
+  .stakcer__top h1 {
+    position: relative;
+    left: -8px;
+  }
 }
 
 .stakcer__top h1 {

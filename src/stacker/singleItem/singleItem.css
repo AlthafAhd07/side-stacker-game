@@ -140,3 +140,14 @@
   background-color: black;
   height: 75%;
 }
+
+.stackerItem__wrapper:has(.stacker__select:hover) > .stacker__item {
+  border: 1px solid rgb(145, 227, 145);
+
+  box-shadow: rgb(145 227 145 / 50%) 0px 0px 14px;
+}
+.stacker__select[data-value="true"] {
+  opacity: 0;
+  visibility: hidden;
+  top: 5px;
+}

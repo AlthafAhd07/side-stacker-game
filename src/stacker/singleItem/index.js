@@ -112,7 +112,7 @@ const SingleItem = ({ data, position: { row, item }, setNotifyTurn }) => {
         }
         maxLength="1"
       />
-      <div className="stacker__select">
+      <div className="stacker__select" data-value={!!data.value}>
         <div onClick={() => handleinput({ customInputValue: "X" })}>X</div>
         <div onClick={() => handleinput({ customInputValue: "O" })}>O</div>
       </div>

@@ -17,6 +17,10 @@ function validateSelectedItems({ item1, item2, item3, item4, username }) {
   }
 }
 
+// This logic can be more simplified, but I kept like this for the readability and to undestand the code easily ( to others )
+
+// also used a lots of variables to get an idea for others That what I am doing here
+
 function checkWin({ row, item, items, setItems, username, setWin }) {
   // working with row
   const nthRowItem = Number(item.match(/[1-9]/)[0]);
@@ -82,8 +86,6 @@ function checkWin({ row, item, items, setItems, username, setWin }) {
       return true;
     }
 
-    // logic for row here
-
     rowStartCount++;
     rowEndCount++;
   }
@@ -103,7 +105,6 @@ function checkWin({ row, item, items, setItems, username, setWin }) {
     if (columnEndCount > 7 || columnStartCount > nthColumnItem) {
       break;
     }
-    // logic for row here
 
     const item1 = items[`row${columnStartCount}`][item];
     const item2 = items[`row${columnStartCount + 1}`][item];
@@ -242,8 +243,6 @@ function checkWin({ row, item, items, setItems, username, setWin }) {
       return true;
     }
 
-    // logic for row here
-
     diagonalEnd.row += 1;
     diagonalEnd.column += 1;
     diagonalStart.row += 1;
@@ -283,8 +282,6 @@ function checkWin({ row, item, items, setItems, username, setWin }) {
     ) {
       break;
     }
-
-    // logic for row here
 
     const item1 =
       items[`row${diagonalStartLR.row}`][`item${diagonalStartLR.column}`];
