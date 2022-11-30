@@ -17,7 +17,7 @@ import useAvoidFirstRender from "../hooks/useAvoidFirstRender";
 
 import OnlineUsers from "./onlineUsers";
 
-const Stacker = () => {
+const Stacker = ({ setShowWelcome }) => {
   const username = sessionStorage.getItem("username");
 
   const {
@@ -222,7 +222,7 @@ const Stacker = () => {
 
   return (
     <div className="stacker">
-      <StackerTop />
+      <StackerTop setShowWelcome={setShowWelcome} />
 
       {showTurn && currentGame.opponent && (
         <ShowTurn turn={currentTurn} notifyTurn={notifyTurn} />

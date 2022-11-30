@@ -9,7 +9,9 @@ import StackerProvider from "./context/stacker.context";
 import Welcome from "./stacker/welcome";
 
 function App() {
-  let user = sessionStorage.getItem("username");
+  const [currentUser, setCurrentUser] = useState(() =>
+    sessionStorage.getItem("username")
+  );
   const [showWelcome, setShowWelcome] = useState(false);
 
   const visited = localStorage.getItem("visited");
@@ -21,22 +23,35 @@ function App() {
     }
   }, []);
 
-  if (!!!user) {
-    user = prompt("Please enter your name");
-    sessionStorage.setItem("username", user);
-    while (user.length < 1) {
-      user = prompt("Please enter your name");
-      sessionStorage.setItem("username", user);
+  if (!!!currentUser) {
+    let user = prompt("Please enter your name");
+
+    if (user === null) {
+      user = `user${(Math.random() * 100).toFixed()}`;
     }
+
+    setCurrentUser(user);
+    sessionStorage.setItem("username", user);
   }
 
   useEffect(() => {
-    if (!!user) {
-      socket.auth = { username: user };
+    if (!!currentUser) {
+      socket.auth = { username: currentUser };
       socket.connect();
     }
     return () => socket.close();
-  }, [user]);
+  }, [currentUser]);
+
+  useEffect(() => {
+    let removeWelcome;
+
+    if (showWelcome) {
+      removeWelcome = setTimeout(() => {
+        setShowWelcome(false);
+      }, 13000);
+    }
+    return () => clearTimeout(removeWelcome);
+  }, [showWelcome]);
 
   return (
     <div className="App">
@@ -44,7 +59,7 @@ function App() {
 
       {!showWelcome && (
         <StackerProvider>
-          <Stacker />
+          <Stacker setShowWelcome={setShowWelcome} />
         </StackerProvider>
       )}
     </div>

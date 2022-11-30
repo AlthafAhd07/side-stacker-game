@@ -9,6 +9,18 @@
 
   min-height: 270px;
 }
+.howToPlay {
+  position: absolute;
+  width: 25px;
+  height: 35px;
+
+  right: 12px;
+  top: 8px;
+
+  cursor: pointer;
+
+  fill: rgb(55, 0, 255);
+}
 
 @media only screen and (max-width: 450px) {
   .stakcer__top {

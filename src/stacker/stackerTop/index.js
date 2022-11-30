@@ -6,7 +6,9 @@ import { StackerContext } from "../../context/stacker.context";
 import socket from "../../socket";
 import { INITIAL_STATE } from "../initalState";
 
-const StackerTop = () => {
+import { ReactComponent as HowToPlay } from "../../images/creative-thinking-icon.svg";
+
+const StackerTop = ({ setShowWelcome }) => {
   const username = sessionStorage.getItem("username");
 
   const {
@@ -45,6 +47,7 @@ const StackerTop = () => {
 
   return (
     <div className="stakcer__top">
+      <HowToPlay className="howToPlay" onClick={() => setShowWelcome(true)} />
       <h1>Side Stacker Game</h1>
       <div className="stacker__showUser">
         <span className="top__username">{username}</span>{" "}
