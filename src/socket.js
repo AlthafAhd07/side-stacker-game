@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 
 //althaf-game.herokuapp.com
 // localhost:3001
-const URL = "ws://althaf-game.herokuapp.com";
+const URL = "ws://side-stacker-game.onrender.com/";
 
 const socket = io(URL, {
   reconnectionDelayMax: 10000,
