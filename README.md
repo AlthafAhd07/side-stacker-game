@@ -1,6 +1,6 @@
 # SIDE STACKER GAME
 
-Live URL [https://play-with-althaf.netlify.app/](https://play-with-althaf.netlify.app/).
+Live URL [https://play-with-althaf.onrender.com/](https://play-with-althaf.onrender.com/).
 
 ## A real time game where 2 user can play at a time
 
